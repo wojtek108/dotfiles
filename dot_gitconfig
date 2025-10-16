@@ -1,0 +1,12 @@
+[user]
+	email = wojtek.gajewski@gmail.com
+	name = wojtek108
+[credential]
+	helper = /usr/local/bin/git-credential-manager
+	credentialStore = secretservice
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[init]
+	defaultBranch = main
+[url "git@github.com:"]
+	insteadOf = https://github.com/
