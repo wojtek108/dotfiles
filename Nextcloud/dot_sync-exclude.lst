@@ -1,0 +1,374 @@
+# ========================================
+# NEXTCLOUD SYNC EXCLUSION LIST
+# Complete and comprehensive
+# ========================================
+
+# ========================================
+# NEXTCLOUD SPECIFIC
+# ========================================
+.sync-exclude.lst
+.nextcloud-sync.log
+.owncloudsync.log
+.csync_journal.db
+.csync_journal.db-shm
+.csync_journal.db-wal
+
+# ========================================
+# VERSION CONTROL SYSTEMS
+# ========================================
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+.svn/
+.hg/
+.bzr/
+CVS/
+
+# ========================================
+# PYTHON DEVELOPMENT
+# ========================================
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+virtualenv/
+.Python
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+
+# Testing and coverage
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.nox/
+.cache
+
+# Distribution and packaging
+dist/
+build/
+*.egg-info/
+.eggs/
+*.egg
+.installed.cfg
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Type checking and linting
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.dmypy.json
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# ========================================
+# JAVASCRIPT / NODE.JS
+# ========================================
+node_modules/
+bower_components/
+jspm_packages/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.yarn/
+.pnp.*
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.output/
+
+# ========================================
+# JAVA / JVM
+# ========================================
+target/
+.gradle/
+.mvn/
+*.class
+*.jar
+*.war
+*.ear
+.classpath
+.project
+.settings/
+
+# ========================================
+# C / C++
+# ========================================
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
+
+# ========================================
+# .NET / C#
+# ========================================
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# ========================================
+# GO
+# ========================================
+vendor/
+
+# ========================================
+# RUST
+# ========================================
+target/
+Cargo.lock
+
+# ========================================
+# RUBY
+# ========================================
+.bundle/
+vendor/bundle/
+
+# ========================================
+# PHP
+# ========================================
+vendor/
+composer.lock
+
+# ========================================
+# MOBILE DEVELOPMENT
+# ========================================
+.android/
+.ios/
+.flutter-plugins
+.flutter-plugins-dependencies
+android/.gradle/
+ios/Pods/
+ios/.symlinks/
+
+# ========================================
+# IDE AND EDITOR FILES
+# ========================================
+# JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Visual Studio
+.vs/
+
+# Eclipse
+.metadata/
+.project
+.classpath
+.settings/
+.loadpath
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*.swn
+*~
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+.\#*
+.dir-locals.el
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+
+# ========================================
+# BUILD AND DEPLOYMENT TOOLS
+# ========================================
+.terraform/
+.vagrant/
+.docker/
+.Docker/
+docker-compose.yml
+Dockerfile
+.circleci/
+.github/
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# ========================================
+# OPERATING SYSTEM FILES
+# ========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd/
+.Spotlight-V100/
+.TemporaryItems/
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+*.lnk
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Linux
+.directory
+.Trash-*/
+lost+found/
+
+# System volume information
+System Volume Information/
+
+# ========================================
+# CLOUD STORAGE AND SYNC TOOLS
+# ========================================
+.dropbox/
+.dropbox.cache/
+.icloud/
+.one/
+.onedrive/
+.syncthing/
+.stfolder/
+.stversions/
+.sync/
+
+# ========================================
+# TEMPORARY AND CACHE FILES
+# ========================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.bk
+*.old
+*.orig
+*.cache
+*.log
+*.pid
+*.seed
+*.out
+*.err
+.cache/
+cache/
+tmp/
+temp/
+
+# Database files
+*.db-shm
+*.db-wal
+
+# ========================================
+# DOWNLOAD AND PARTIAL FILES
+# ========================================
+*.part
+*.crdownload
+*.download
+*.partial
+
+# ========================================
+# COMPRESSED ARCHIVES
+# ========================================
+*.tar
+*.gz
+*.bz2
+*.xz
+*.zip
+*.rar
+*.7z
+*.iso
+*.dmg
+
+# ========================================
+# MEDIA THUMBNAILS
+# ========================================
+._*
+.picasa.ini
+.picasaoriginals/
+
+# ========================================
+# SYSTEM DIRECTORIES (DO NOT SYNC)
+# ========================================
+dev/
+proc/
+sys/
+run/
+mnt/
+media/
+.snap/
+.gvfs/
+
+# ========================================
+# LOCK FILES
+# ========================================
+*.lock
+.lock
+package-lock.json
+yarn.lock
+Gemfile.lock
+poetry.lock
+
+# ========================================
+# ENVIRONMENT AND CONFIG
+# ========================================
+.env
+.envrc
+.env.local
+.env.*.local
+
+# ========================================
+# LOGS
+# ========================================
+logs/
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
