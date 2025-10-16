@@ -1,0 +1,168 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoredups:erasedups
+
+# Append to the history file, don't overwrite it
+shopt -s histappend
+
+# Set history length
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Check the window size after each command and update LINES and COLUMNS
+shopt -s checkwinsize
+
+# Enable interactive comments (allows comments after commands)
+shopt -s interactive_comments
+
+# Set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# Environment Variables
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export BUN_INSTALL="$HOME/.local/share/reflex/bun"
+export PYENV_ROOT="$HOME/.pyenv"
+export NVM_DIR="$HOME/.nvm"
+export PYTHONPATH="$HOME/.local/lib/python3.10/site-packages:$PYTHONPATH"
+export LS_COLORS="$LS_COLORS:ow=1;34:"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+# PATH Modifications
+PATH_ADDITIONS=(
+  "$HOME/.pyenv/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.local/share/bob/nvim-bin"
+  "/opt/nvim-linux64/bin"
+  "$HOME/.local/bin"
+  "$BUN_INSTALL/bin"
+  "$HOME/node-v20.12.1-linux-x64/bin"
+  "/home/linuxbrew/.linuxbrew/bin"
+  "/home/linuxbrew/.linuxbrew/sbin"
+  "$HOME/Applications"
+  "/home/wga/.mozbuild/git-cinnabar"
+  "/usr/local/bin"
+)
+for dir in "${PATH_ADDITIONS[@]}"; do
+  if [ -d "$dir" ] && [[ ":$PATH:" != *":$dir:"* ]]; then
+    PATH="$dir:$PATH"
+  fi
+done
+export PATH
+
+# Set a fancy prompt (color, if supported)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt
+
+# Set terminal title for xterm/rxvt compatible terminals
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# Enable color support for ls and add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ee='eza -s name -l'
+alias eee='eza -s name -la'
+# Alias for regular fzf with no preview pane (default behavior)
+alias fzf='fzf'
+# Alias for fzf with a preview pane
+alias fff='fzf --preview="cat {}" --preview-window=right:70%:wrap'
+
+# General aliases
+alias py='python3'
+alias pp='play *.mp3'
+alias mikrus='ssh root@srv29.mikr.us -p 10212'
+alias sd='echo "shutting down...." && /sbin/shutdown now'
+alias nv='nvim'
+alias rb='echo "Rebooting now...."; reboot'
+alias ccc='z tactics && /usr/local/bin/vim chesstempo_problems'
+alias qq='copyq show'
+alias dc='doublecmd'
+alias cm='cmus'
+alias cr='cargo run'
+alias cl='clear'
+alias vi='vim'
+alias bat="batcat"
+alias claude="/home/wga/.claude/local/claude"
+
+# yazi file manager function
+y() {
+  local tmp cwd
+  tmp=$(mktemp -t "yazi-cwd.XXXXXX")
+  yazi "$@" --cwd-file="$tmp"
+  if cwd=$(cat "$tmp") && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
+# Vim keybindings for command line
+set -o vi
+
+# Tool Initializations
+if command -v pyenv &>/dev/null; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+
+# Sourcing Other Configuration Files
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+
+# Set default editor to custom compiled Vim
+export EDITOR="/usr/local/bin/vim"
+export VISUAL="/usr/local/bin/vim"
+
+# opencode
+export PATH=/home/wga/.opencode/bin:$PATH
+
+
+# starship prompt
+eval "$(starship init bash)"
+
+# zoxide
+eval "$(zoxide init bash)"
+

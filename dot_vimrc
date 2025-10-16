@@ -1,0 +1,97 @@
+"=============================================================================
+" General Vim Behavior & Settings
+"=============================================================================
+
+set nocompatible " Be iMproved, not compatible with old Vi
+set encoding=utf-8 " Set Vim's internal encoding to UTF-8
+set fileencoding=utf-8 " Set default file encoding for new files to UTF-8
+set autoindent " Automatically indent new lines
+set smartindent " Smarter auto-indent for C-like languages
+set nowrap " Don't wrap lines; scroll horizontally instead
+set hidden " Allow unsaved buffers to be hidden (useful for switching files)
+set showcmd " Show incomplete commands in the status line
+set updatetime=300 " Time in ms for 'CursorHold' events (important for some plugins, like linters)
+set undofile " Enable persistent undo (undo history persists across sessions)
+set undodir=~/.vim/undodir " Uncomment and create this directory if you want to specify undo file location
+set laststatus=2
+set statusline=buf\ %n:\ %F\ %m%r\ %=%l,%c\ \ \ \ \ \ \ \ %p%%
+"set statusline= laststatus=1
+"=============================================================================
+" UI & Appearance
+"=============================================================================
+
+syntax on " Enable syntax highlighting
+
+set number " Show absolute line numbers
+set relativenumber " Show relative line numbers for navigation (e.g., '3j' to move 3 lines down)
+set mouse=a " Enable mouse support in all modes (terminal)
+set mousehide " Hide mouse cursor when typing
+set splitright " New vertical splits appear to the right
+set splitbelow " New horizontal splits appear below
+
+"=============================================================================
+" Indentation & Tabs
+"=============================================================================
+
+set tabstop=4 " Number of spaces a <Tab> counts for
+set softtabstop=4 " Number of spaces a <Tab> counts for when editing (backspace too)
+set expandtab " Use spaces instead of tabs for indentation
+
+"=============================================================================
+" Search Options
+"=============================================================================
+
+set incsearch " Highlight matches as you type
+set hlsearch " Highlight all matches
+set ignorecase " Ignore case in searches
+set smartcase " Case-sensitive if pattern contains uppercase, otherwise ignore case
+
+" Quickly turn off search highlight (press <leader>n)
+nnoremap <leader>n :nohlsearch<CR>
+
+"=============================================================================
+" File Type & Navigation
+"=============================================================================
+
+filetype plugin indent on " Enable filetype detection, plugins, and intelligent indenting
+set tags=./tags,./.git/tags,tags,.git/tags " Common tag files locations for ctags/Universal Ctags
+set wildmenu " Enhanced command-line completion menu
+set wildignore+=*.o,*.pyc,*.pdf,*.mod,*.so,*.h.gch,*.bak,*.swp,*.tmp,*.log " Ignore common temporary/generated files in completion
+
+"=============================================================================
+" Mappings
+"=============================================================================
+
+let mapleader="," " Set leader key to comma (,)
+
+" Easier navigation for wrapped lines (if 'nowrap' is off or for long lines)
+nnoremap j gj
+nnoremap k gk
+
+" Use system clipboard as default for yank and paste
+set clipboard=unnamedplus
+
+" Execute Python script from Vim (after clearing console)
+augroup python_mappings
+  autocmd!
+  autocmd FileType python nnoremap <buffer> <leader>r :w<CR>:!clear && python3 %<CR>
+augroup END
+
+"=============================================================================
+" Plugin Manager (e.g., vim-plug) - Add your plugins here later
+"=============================================================================
+
+" If you install a plugin manager like vim-plug, you'd add lines here.
+" Example for vim-plug:
+" call plug#begin('~/.vim/plugged')
+"
+" Plug 'dense-analysis/ale' " Asynchronous Linting/Fixing
+" Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP client (requires Node.js)
+" Plug 'rust-lang/rust.vim' " Rust language support
+" Plug 'fatih/vim-go' " Go language support
+" Plug 'davidhalter/jedi-vim' " Python completion
+"
+" call plug#end()
+"
+" Remember to run :PlugInstall (or your plugin manager's equivalent) in Vim
+" after adding plugins and saving your .vimrc.

@@ -1,0 +1,230 @@
+#eval "$(starship init zsh)" ~/.zshrc - User configuration for Zsh
+#
+# This file is sourced when starting an interactive shell.
+# For more information, see:
+# https://zsh.sourceforge.io/Doc/Release/zsh_toc.html
+
+###############################################################################
+# 1. Zsh Core Settings & Options
+###############################################################################
+
+# Auto-completion setup
+autoload -Uz compinit && compinit
+
+# General Zsh options
+setopt AUTO_CD             # Automatically change to directory without 'cd'
+setopt AUTO_LIST           # Automatically list choices on ambiguous completion
+setopt AUTO_MENU           # Show completion menu on successive tabs
+setopt COMPLETE_IN_WORD    # Enable completion from anywhere in a word
+setopt ALWAYS_TO_END       # Move cursor to end of word on completion
+setopt INTERACTIVE_COMMENTS # Allow comments in interactive shell (e.g., `command # comment`)
+
+# Critical options for proper prompt expansion and Zsh behavior
+unsetopt shwordsplit       # Ensures Zsh behaves like Zsh, not sh (crucial for prompt)
+setopt PROMPT_SUBST        # Enables parameter expansion, command substitution, and arithmetic expansion in prompts.
+setopt PROMPT_PERCENT      # Enables percent escapes (like %F{color}) in prompts.
+
+###############################################################################
+# 2. History Settings
+###############################################################################
+
+HISTSIZE=1000               # Number of lines to store in history in a session
+SAVEHIST=2000               # Number of lines to save in the history file
+HISTFILE=~/.zsh_history     # Path to the history file
+
+setopt HIST_IGNORE_DUPS     # Ignore duplicate commands in history
+setopt HIST_IGNORE_ALL_DUPS # Remove all previous matching commands
+setopt APPEND_HISTORY       # Append to the history file, don't overwrite
+setopt INC_APPEND_HISTORY   # Write to the history file immediately after command execution
+
+###############################################################################
+# 3. Environment Variables
+###############################################################################
+
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export BUN_INSTALL="$HOME/.local/share/reflex/bun"
+export PYENV_ROOT="$HOME/.pyenv"
+export NVM_DIR="$HOME/.nvm"
+export PYTHONPATH="$HOME/.local/lib/python3.10/site-packages:$PYTHONPATH"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+
+# LS_COLORS modification (for displaying 'other writable' directories differently)
+export LS_COLORS="$LS_COLORS:ow=1;34:"
+
+###############################################################################
+# 4. PATH Modifications
+###############################################################################
+
+# Define an array of directories to add to PATH.
+# This makes it easy to manage and prevents duplicates.
+PATH_ADDITIONS=(
+  "$HOME/.pyenv/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.local/share/bob/nvim-bin"
+  "/opt/nvim-linux64/bin"
+  "$HOME/.local/bin"
+  "$BUN_INSTALL/bin"
+  "$HOME/node-v20.12.1-linux-x64/bin"
+  "/home/linuxbrew/.linuxbrew/bin"
+  "/home/linuxbrew/.linuxbrew/sbin"
+  "$HOME/Applications"
+  "/home/wga/.mozbuild/git-cinnabar"
+  "/usr/local/bin:$PATH"
+)
+
+# Prepend new paths to the existing PATH if they exist and are not already in PATH.
+for dir in "${PATH_ADDITIONS[@]}"; do
+  if [[ -d "$dir" ]] && [[ ":$PATH:" != *":$dir:"* ]]; then
+    PATH="$dir:$PATH"
+  fi
+done
+export PATH
+
+###############################################################################
+# 5. Prompt & Display Settings
+###############################################################################
+
+# Load Zsh colors module FIRST before defining a color prompt
+autoload -Uz colors && colors
+
+# Set debian_chroot variable if in a chroot environment
+if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
+  debian_chroot=$(< /etc/debian_chroot)
+fi
+
+# Determine if terminal supports colors for prompt
+case "$TERM" in
+  xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# Define the primary prompt (PROMPT)
+if [[ "$color_prompt" == yes ]]; then
+  PROMPT='${debian_chroot:+($debian_chroot)}%F{green}%n@%m%f:%F{blue}%~%f$ '
+else
+  PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~$ '
+fi
+
+# Set terminal title for xterm/rxvt compatible terminals
+case "$TERM" in
+  xterm*|rxvt*)
+    precmd() { print -Pn "\e]0;${debian_chroot:+($debian_chroot)}%n@%m: %~\a" }
+    ;;
+esac
+
+###############################################################################
+# 6. Key Bindings
+###############################################################################
+
+# Set Vim key-bindings for command line editing (e.g., Esc to enter normal mode)
+bindkey -v
+
+###############################################################################
+# 7. Aliases
+###############################################################################
+
+# Color support for core utilities (ls, grep etc.)
+if [[ -x /usr/bin/dircolors ]]; then
+  if [[ -r ~/.dircolors ]]; then
+    eval "$(dircolors -b ~/.dircolors)"
+  else
+    eval "$(dircolors -b)"
+  fi
+  # Alias ls with auto color unless already defined by eza
+  [[ -z "$(alias ls 2>/dev/null)" ]] && alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# ls-like aliases (using eza if preferred, otherwise default ls)
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ee='eza -s name -l'   # eza sorted by name, long format
+alias eee='eza -s name -la' # eza sorted by name, long format, all files
+
+# General aliases
+alias py='python3'
+alias pp='play *.mp3'
+alias mikrus='ssh root@srv29.mikr.us -p 10212'
+alias sd='echo "shutting down...." && /sbin/shutdown now'
+alias nv='nvim'
+alias rb='echo "Rebooting now...."; reboot'
+# alias ccc='z tactics && vi chesstempo_problems' # Note: 'z' here will refer to zoxide if initialized
+alias ccc='z tactics && /usr/local/bin/vim chesstempo_problems'
+
+alias qq='copyq show'
+alias dc='doublecmd'
+alias cm='cmus'
+alias cr='cargo run'
+alias cl='clear'
+alias claude="/home/wga/.claude/local/claude"
+
+###############################################################################
+# 8. Functions
+###############################################################################
+
+# yazi file manager function
+y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [[ -n "$cwd" ]] && [[ "$cwd" != "$PWD" ]]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
+###############################################################################
+# 9. Tool Initializations (Conditional Loading)
+###############################################################################
+
+# pyenv (Python version management)
+if command -v pyenv &>/dev/null; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
+
+# Homebrew (Linuxbrew)
+# Check if brew executable exists at its expected path
+if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# NVM (Node Version Manager)
+# Only source if the script exists
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+
+# Rust environment (cargo)
+# Only source if the env file exists
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# zoxide (fast directory switcher - recommended over z.sh)
+# Initialize zoxide functions and aliases
+eval "$(zoxide init zsh)"
+# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
+###############################################################################
+# 10. Sourcing Other Configuration Files (Optional)
+###############################################################################
+
+# Load FZF (fuzzy finder) if available
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+# Load extra aliases (if you have them and want to keep them separate)
+# Consider moving contents of ~/.bash_aliases directly into the Aliases section above.
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+
+# Other custom or optional scripts
+# IMPORTANT: If you are using zoxide, you likely DO NOT need rupa/z.sh
+# Uncomment these ONLY if you specifically need them AND understand their function
+# [[ -f ~/z.sh ]] && source ~/z.sh
+# [[ -f /usr/local/bin/z/z.sh ]] && source /usr/local/bin/z/z.sh
+[[ -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
+
+# ###############################################
+# Set default editor to custom compiled Vim
+export EDITOR="/usr/local/bin/vim"
+export VISUAL="/usr/local/bin/vim"
+# End of ~/.zshrc
+
