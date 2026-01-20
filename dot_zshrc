@@ -226,5 +226,22 @@ eval "$(starship init zsh)"
 # Set default editor to custom compiled Vim
 export EDITOR="/usr/local/bin/vim"
 export VISUAL="/usr/local/bin/vim"
+
+
+# opencode
+export PATH=/home/wga/.opencode/bin:$PATH
+
+# ssh 
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+  ssh-add ~/.ssh/mikrus 2>/dev/null
+fi
+
+# starship prompt
+eval "$(starship init bash)"
+
+# zoxide
+eval "$(zoxide init bash)"
+
 # End of ~/.zshrc
 

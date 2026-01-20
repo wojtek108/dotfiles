@@ -159,6 +159,11 @@ export VISUAL="/usr/local/bin/vim"
 # opencode
 export PATH=/home/wga/.opencode/bin:$PATH
 
+# ssh 
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" > /dev/null
+  ssh-add ~/.ssh/mikrus 2>/dev/null
+fi
 
 # starship prompt
 eval "$(starship init bash)"
