@@ -257,5 +257,9 @@ if [ -f '/home/wga/google-cloud-sdk/completion.bash.inc' ]; then . '/home/wga/go
 export GOOGLE_GENAI_USE_VERTEXAI=true
 export GOOGLE_CLOUD_PROJECT="n8n108"
 export GOOGLE_CLOUD_LOCATION="europe-central2"
+
+# for gcost to work
+export PATH="$HOME/bin:$PATH"
+
 # End of ~/.zshrc
 
