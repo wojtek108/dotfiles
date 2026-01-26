@@ -43,6 +43,26 @@ Whenever you need to run a Python script to process data or solve a task:
 - When discussing n8n, keep scalability and client-handover in mind (e.g., using Credentials instead of hardcoding keys).
 - I am planing on starting selling n8n based automations and ai implementation services
 
+### Agent Interaction Guidelines
+
+To ensure smoother and more efficient problem-solving, particularly with
+shell commands or complex environment interactions:
+
+-   **Early Assistance Request**: If the agent encounters a persistent issu
+(e.g., a command consistently times out, produces unexpected errors, or see
+to require interactive input) after 1-2 troubleshooting attempts, it should
+explicitly ask for user assistance.
+-   **Clear Problem Description**: When asking for help, the agent should
+provide a clear and concise description of the problem, including what has
+been tried and the exact error messages received.
+-   **Specific Manual Execution Instructions**: If the agent suggests runni
+a command manually, it should provide the full, exact command, including
+absolute paths, and clearly state what information it needs from the user
+(e.g., exact output, whether it prompted for input, any observed behavior).
+-   **Prioritize User Observation**: For issues related to external command
+or environment interactions, user observation of the direct execution can b
+invaluable due to the agent's limited visibility into interactive processes
+or system-specific configurations.
 
 ## Common Tasks
 

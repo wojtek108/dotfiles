@@ -36,6 +36,7 @@ export NVM_DIR="$HOME/.nvm"
 export PYTHONPATH="$HOME/.local/lib/python3.10/site-packages:$PYTHONPATH"
 export LS_COLORS="$LS_COLORS:ow=1;34:"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export PATH="$HOME/.claude/local:$PATH"
 
 # PATH Modifications
 PATH_ADDITIONS=(
@@ -115,7 +116,6 @@ alias cr='cargo run'
 alias cl='clear'
 alias vi='vim'
 alias bat="batcat"
-alias claude="/home/wga/.claude/local/claude"
 
 # yazi file manager function
 y() {

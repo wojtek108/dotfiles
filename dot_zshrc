@@ -47,6 +47,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export NVM_DIR="$HOME/.nvm"
 export PYTHONPATH="$HOME/.local/lib/python3.10/site-packages:$PYTHONPATH"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
+export PATH="$HOME/.claude/local:$PATH"
 
 # LS_COLORS modification (for displaying 'other writable' directories differently)
 export LS_COLORS="$LS_COLORS:ow=1;34:"
@@ -158,7 +159,6 @@ alias dc='doublecmd'
 alias cm='cmus'
 alias cr='cargo run'
 alias cl='clear'
-alias claude="/home/wga/.claude/local/claude"
 
 ###############################################################################
 # 8. Functions
