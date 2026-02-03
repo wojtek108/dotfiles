@@ -57,6 +57,8 @@ tags = ["tag1", "tag2"]
 **Key fields:**
 - `title`: The post title
 - `date`: Use format `YYYY-MM-DDTHH:MM:SS+ZZ:ZZ` (e.g., `2025-12-21T15:30:00+01:00`)
+  - **⚠️ CRITICAL**: Always set the date to today (or close to today) for new posts. Hugo filters pages based on their publication date—if you set a date far in the past, the post may not appear in site listings, even though the HTML file is generated. This can make it seem like a post was never published.
+  - **For chronological ordering**: Posts appear in reverse chronological order (newest first) based on their `date` field. To control post ordering on the homepage, adjust the date accordingly.
 - `draft`: Set to `false` to publish, `true` for draft
 - `tags`: Lowercase tags from the existing tag list (see [formatting_guide.md](../formatting_guide.md))
 
@@ -209,10 +211,27 @@ hugo new posts/${NEXT_NUM}_my-new-post-title.md
 1. **Naming**: Use lowercase slugs with hyphens (e.g., `069_my-post-title.md`)
 2. **Tags**: Select 2-5 relevant tags from existing list
 3. **Date format**: Always include timezone offset
-4. **Draft status**: Start with `draft = true` for review, then change to `false` to publish
-5. **Content structure**: Use clear headings to organize content
-6. **Deployment script**: Always generate a bash script to copy posts from staging to the main Hugo site
-7. **Script naming**: Use descriptive names like `copy_posts_to_hugo.sh` or `deploy_posts_YYYYMMDD.sh`
+4. **Date recency**: ⚠️ **CRITICAL** - Always set the date to the current date for new posts. Historical dates (especially dates from the past that are far away) may cause Hugo to exclude the post from site listings. Posts with old dates may appear to be unpublished even though the HTML file is generated.
+5. **Chronological ordering**: Posts appear in reverse chronological order (newest first) on the homepage based on their `date` field. Adjust dates to control post ordering.
+6. **Draft status**: Start with `draft = true` for review, then change to `false` to publish
+7. **Content structure**: Use clear headings to organize content
+8. **Deployment script**: Always generate a bash script to copy posts from staging to the main Hugo site
+9. **Script naming**: Use descriptive names like `copy_posts_to_hugo.sh` or `deploy_posts_YYYYMMDD.sh`
+
+## Troubleshooting
+
+### Post is generated but doesn't appear on homepage
+
+**Symptom**: The post HTML file exists in `/public/posts/XXX_slug/index.html` but doesn't show up in the site listing.
+
+**Root cause**: The post's `date` field is set to a date far in the past. Hugo filters pages based on their publication date and excludes old posts from `.Site.RegularPages` listings.
+
+**Solution**:
+1. Update the post's date to today (or a recent date)
+2. Rebuild Hugo: `hugo` (or `hugo -D` if it's still in draft mode)
+3. The post should now appear on the homepage
+
+**Example**: Post 096 "Vibecoding Blueprint" had a date of `2025-02-16T10:00:00+01:00` (almost a year in the past). It was generated as HTML but filtered out from listings. After updating to `2026-01-27T12:00:00+01:00` (current date), it appeared immediately on the homepage.
 
 ## Supporting Files
 

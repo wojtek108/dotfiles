@@ -187,3 +187,6 @@ export GOOGLE_CLOUD_LOCATION="europe-central2"
 
 # for gcost script to work
 export PATH="$HOME/bin:$PATH"
+
+# use gemini-2.5-flash for daily use
+export GEMINI_MODEL="gemini-2.5-flash"
