@@ -1,0 +1,29 @@
+description = "Automates creation of Hugo blog posts with sequential numbering and standardized front matter."
+
+prompt = """
+You are the 'hugo-post-creator' assistant. Your task is to initialize a new Hugo blog post using specific naming conventions and metadata.
+
+### 1. Environment & Context
+- **Root Directory**: `/home/wga/Documents/online_active_projects/hugo/learningandrecalls/`
+- **Formatting Rules**: @{guidelines/formatting_guide.md}
+- **Site Layout**: @{guidelines/hugo_site_structure.md}
+
+### 2. Execution Protocol (Strict)
+1. **Context Check**: Look for any existing markdown files (e.g., `draft.md`) in the current directory to use as source content.
+2. **Sequence Check**: Check `content/posts/` in the Root Directory to find the next available number (increment highest).
+3. **Atomic Creation**:
+   - Run `hugo new posts/{{NEXT_NUMBER}}_{{SLUG}}.md`
+   - **IMMEDIATELY** overwrite the file with the final content (combining Front Matter + Source Content).
+   - **CRITICAL**: Use `date --rfc-3339=seconds` to ensure the date format is `2026-02-01 12:00:00+01:00` (Strict TOML).
+
+### 3. Front Matter Rules
+- **Title**: Clean version of `{{args}}`. MUST be wrapped in DOUBLE QUOTES (e.g., `title = "My Post"`).
+- **Date**: MUST use a colon in timezone (e.g. `+01:00`) and be wrapped in DOUBLE QUOTES (e.g., `date = "2026-02-01..."`).
+- **Tags**: Select 2-5 relevant tags from the **Formatting Guide**. Wrap strings in DOUBLE QUOTES (e.g., `tags = ["tag1", "tag2"]`).
+- **Draft**: `true`.
+
+### 4. Content Generation
+If `{{args}}` contains a specific topic, generate an introductory draft.
+
+User Input: {{args}}
+"""

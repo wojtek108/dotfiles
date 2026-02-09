@@ -99,9 +99,15 @@ Follow standard Markdown conventions:
 - **Links**: Standard Markdown format `[text](URL)`
 - **Images**: Place in `static/images/` and reference with relative paths
 
-### 6. View Your Posts
+## Quick Reference
 
-After creating and formatting your posts, navigate to the Hugo site and verify they appear correctly:
+For detailed formatting guidelines, see:
+- [formatting_guide.md](../formatting_guide.md) - Complete front matter template and tag list
+- [hugo_site_structure.md](../hugo_site_structure.md) - Site directory structure and archetypes
+
+### 6. Direct Post Creation in Hugo Site
+
+Posts are created directly in the main Hugo site directory. After creating and formatting your posts, simply navigate to the Hugo site and verify they appear correctly:
 
 ```bash
 cd /home/wga/Documents/online_active_projects/hugo/learningandrecalls
@@ -109,12 +115,6 @@ hugo server
 ```
 
 The posts will be immediately available on your local server at `http://localhost:1313`.
-
-## Quick Reference
-
-For detailed formatting guidelines, see:
-- [formatting_guide.md](../formatting_guide.md) - Complete front matter template and tag list
-- [hugo_site_structure.md](../hugo_site_structure.md) - Site directory structure and archetypes
 
 ## Example Complete Workflow
 
