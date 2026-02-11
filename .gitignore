@@ -1,0 +1,5 @@
+dot_qwen/**/private_oauth_creds.json
+dot_qwen/projects/
+dot_qwen/tmp/
+dot_qwen/debug/
+
