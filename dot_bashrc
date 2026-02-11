@@ -190,3 +190,7 @@ export PATH="$HOME/bin:$PATH"
 
 # use gemini-2.5-flash for daily use
 export GEMINI_MODEL="gemini-2.5-flash"
+
+# bun
+export BUN_INSTALL="$HOME/.local/share/reflex/bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

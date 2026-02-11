@@ -1,0 +1,37 @@
+[
+  {
+    "sessionId": "61bed1bb-8292-4082-ac5a-1536658eca19",
+    "messageId": 0,
+    "type": "user",
+    "message": "/auth",
+    "timestamp": "2026-02-11T15:46:10.376Z"
+  },
+  {
+    "sessionId": "61bed1bb-8292-4082-ac5a-1536658eca19",
+    "messageId": 1,
+    "type": "user",
+    "message": "/model",
+    "timestamp": "2026-02-11T15:46:25.956Z"
+  },
+  {
+    "sessionId": "61bed1bb-8292-4082-ac5a-1536658eca19",
+    "messageId": 2,
+    "type": "user",
+    "message": "/settings",
+    "timestamp": "2026-02-11T16:12:09.536Z"
+  },
+  {
+    "sessionId": "8648455c-b112-4021-a9c3-ff2553059bfe",
+    "messageId": 0,
+    "type": "user",
+    "message": "let us continue with lesson 02. read context and the lesson.",
+    "timestamp": "2026-02-11T16:13:26.705Z"
+  },
+  {
+    "sessionId": "8648455c-b112-4021-a9c3-ff2553059bfe",
+    "messageId": 1,
+    "type": "user",
+    "message": "act as an interactive python tutor!",
+    "timestamp": "2026-02-11T16:14:40.111Z"
+  }
+]

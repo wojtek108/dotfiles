@@ -1,0 +1,46 @@
+2026-02-09T15:22:28.238Z [INFO] Config initialization started
+2026-02-09T15:22:28.301Z [INFO] [SKILL_MANAGER] Starting skill directory watchers...
+2026-02-09T15:22:28.301Z [DEBUG] Extension manager initialized
+2026-02-09T15:22:28.373Z [INFO] [SKILL_MANAGER] Refreshing skills cache...
+2026-02-09T15:22:28.373Z [DEBUG] [SKILL_MANAGER] Skipping project-level skills: project root is home directory
+2026-02-09T15:22:28.373Z [DEBUG] [SKILL_MANAGER] Loaded 0 project level skills
+2026-02-09T15:22:28.373Z [DEBUG] [SKILL_MANAGER] Loading user level skills from: /home/wga/.qwen/skills
+2026-02-09T15:22:28.373Z [DEBUG] [SKILL_MANAGER] Loading skills from directory: /home/wga/.qwen/skills
+2026-02-09T15:22:28.390Z [DEBUG] [SKILL_MANAGER] Found 0 entries in /home/wga/.qwen/skills
+2026-02-09T15:22:28.391Z [DEBUG] [SKILL_MANAGER] Loaded 0 user level skills
+2026-02-09T15:22:28.391Z [DEBUG] [SKILL_MANAGER] Loaded 0 user level skills
+2026-02-09T15:22:28.391Z [DEBUG] [SKILL_MANAGER] Loaded 0 extension-level skills from 0 extensions
+2026-02-09T15:22:28.391Z [DEBUG] [SKILL_MANAGER] Loaded 0 extension level skills
+2026-02-09T15:22:28.391Z [INFO] [SKILL_MANAGER] Skills cache refreshed: 0 total skills loaded
+2026-02-09T15:22:28.393Z [INFO] [SKILL_MANAGER] Skill directory watchers started
+2026-02-09T15:22:28.393Z [DEBUG] Skill manager initialized
+2026-02-09T15:22:28.393Z [DEBUG] [MEMORY_DISCOVERY] Loading server hierarchical memory for CWD: /home/wga (importFormat: tree)
+2026-02-09T15:22:28.415Z [DEBUG] [MEMORY_DISCOVERY] Final ordered QWEN.md paths to read: ["/home/wga/.qwen/output-language.md"]
+2026-02-09T15:22:28.474Z [DEBUG] [MEMORY_DISCOVERY] Successfully read and processed imports: /home/wga/.qwen/output-language.md (Length: 676)
+2026-02-09T15:22:28.475Z [DEBUG] Hierarchical memory loaded
+2026-02-09T15:22:28.476Z [DEBUG] [SKILL_MANAGER] Listing skills
+2026-02-09T15:22:28.476Z [DEBUG] [SKILL_MANAGER] Using cached skills
+2026-02-09T15:22:28.476Z [DEBUG] [SKILL_MANAGER] Processing 0 project level skills
+2026-02-09T15:22:28.476Z [DEBUG] [SKILL_MANAGER] Processing 0 user level skills
+2026-02-09T15:22:28.476Z [DEBUG] [SKILL_MANAGER] Processing 0 extension level skills
+2026-02-09T15:22:28.476Z [INFO] [SKILL_MANAGER] Listed 0 unique skills
+2026-02-09T15:22:28.479Z [DEBUG] ToolRegistry created: ["task","skill","list_directory","read_file","grep_search","glob","edit","write_file","run_shell_command","save_memory","todo_write","exit_plan_mode","web_fetch"] (13 tools)
+2026-02-09T15:22:28.479Z [INFO] Tool registry initialized with 13 tools
+2026-02-09T15:22:28.579Z [INFO] Gemini client initialized
+2026-02-09T15:22:28.581Z [INFO] Config initialization completed
+2026-02-09T15:41:20.928Z [DEBUG] [QWEN_OAUTH] No refresh token available, proceeding with device flow
+2026-02-09T15:41:21.276Z [DEBUG] [QWEN_OAUTH] Device authorization result: {
+  device_code: 'CTNNzIkjea_B_ur5PR4xN5tynOaWGiZwGnkcWCaezFg',
+  user_code: 'KFOTPHAP',
+  verification_uri: 'https://chat.qwen.ai/authorize',
+  verification_uri_complete: 'https://chat.qwen.ai/authorize?user_code=KFOTPHAP&client=qwen-code',
+  expires_in: 900
+}
+2026-02-09T15:41:21.294Z [DEBUG] [QWEN_OAUTH] Waiting for authorization...
+
+2026-02-09T15:41:21.294Z [DEBUG] [QWEN_OAUTH] polling for token...
+2026-02-09T15:41:23.571Z [DEBUG] [QWEN_OAUTH] polling for token...
+2026-02-09T15:41:25.845Z [DEBUG] [QWEN_OAUTH] polling for token...
+2026-02-09T15:41:28.159Z [DEBUG] [QWEN_OAUTH] polling for token...
+2026-02-09T15:41:30.420Z [DEBUG] [QWEN_OAUTH] polling for token...
+2026-02-09T15:41:30.700Z [DEBUG] [QWEN_OAUTH] Authentication successful! Access token obtained.

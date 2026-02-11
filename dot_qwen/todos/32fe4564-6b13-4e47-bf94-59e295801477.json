@@ -1,0 +1,20 @@
+{
+  "todos": [
+    {
+      "content": "Modify socket_checker.py to reuse a single connection for multiple domain checks",
+      "id": "1",
+      "status": "completed"
+    },
+    {
+      "content": "Implement batch processing functionality",
+      "id": "2",
+      "status": "completed"
+    },
+    {
+      "content": "Add proper error handling and connection management",
+      "id": "3",
+      "status": "completed"
+    }
+  ],
+  "sessionId": "32fe4564-6b13-4e47-bf94-59e295801477"
+}
