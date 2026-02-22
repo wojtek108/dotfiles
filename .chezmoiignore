@@ -1,1 +1,6 @@
-dot_qwen/private_oauth_creds.json
+# Keep your repo clean of AI 'junk' and logs
+.qwen/debug/**
+.qwen/tmp/**
+.qwen/projects/**
+**/*.log
+.qwen/installation_id
