@@ -1,7 +1,0 @@
-{"level":"info","message":"MCP Shell Server started","timestamp":"2026-02-07T07:34:09.403Z"}
-{"level":"info","message":"Shell: /bin/bash","timestamp":"2026-02-07T07:34:09.405Z"}
-{"level":"info","message":"Working Directory: /home/wga","timestamp":"2026-02-07T07:34:09.405Z"}
-{"level":"info","message":"Platform: linux","timestamp":"2026-02-07T07:34:09.406Z"}
-{"level":"info","message":"Hostname: wga-OptiPlex-790","timestamp":"2026-02-07T07:34:09.406Z"}
-{"level":"info","message":"Username: wga","timestamp":"2026-02-07T07:34:09.406Z"}
-{"level":"info","message":"MCP Shell Server ready","timestamp":"2026-02-07T07:34:09.415Z"}
