@@ -28,6 +28,14 @@ set mouse=a " Enable mouse support in all modes (terminal)
 set mousehide " Hide mouse cursor when typing
 set splitright " New vertical splits appear to the right
 set splitbelow " New horizontal splits appear below
+" Enable True Color support
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" Set a classic, high-visibility colorscheme
+colorscheme slate
+
 
 "=============================================================================
 " Indentation & Tabs
