@@ -1,0 +1,32 @@
+# --- Alacritty Optimization for Intel HD 2000 ---
+
+[window]
+# Disabling decorations can slightly reduce the overhead of drawing the window frame.
+decorations = "full" 
+# Startup mode
+startup_mode = "Windowed"
+
+[scrolling]
+# High history can eat RAM, keep it reasonable for an older machine.
+history = 5000
+multiplier = 3
+
+[font]
+# Choose a "Powerline" or "Nerd Font" for your Python dev work.
+# If you don't have one installed, 'monospace' is the safest fallback.
+normal = { family = "monospace", style = "Regular" }
+size = 11.0
+
+[cursor]
+# Simple block cursor is less demanding than a blinking "Beam"
+style = { shape = "Block", blinking = "Off" }
+
+# [performance]
+# CRITICAL: On older Intel chips, setting this to "High" can sometimes 
+# cause lag. "Average" or "Low" is often smoother for HD 2000.
+# render_timer = false
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

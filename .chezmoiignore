@@ -1,6 +1,68 @@
-# Keep your repo clean of AI 'junk' and logs
+# ============================================================
+# CHEZMOI IGNORE - Files NOT to track in dotfiles
+# ============================================================
+
+# AI tool junk
 .qwen/debug/**
 .qwen/tmp/**
 .qwen/projects/**
-**/*.log
 .qwen/installation_id
+**/*.log
+
+# Browser profiles (locked, huge, machine-specific)
+.config/google-chrome/
+.config/chromium/
+
+# IDE caches and workspace state
+.config/Cursor/
+.config/Kiro/
+.config/Antigravity/
+.idea/
+
+# Nextcloud client data (not the config)
+.nextcloud/
+
+# Temporary and lock files
+*.lock
+*.pid
+*.socket
+*.sock
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# OS-specific caches
+.cache/
+.thumbnails/
+
+# Git directory (chezmoi manages its own git)
+.git/
+
+# Database files (lock while running)
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.db-wal
+*.db-shm
+
+# CopyQ runtime/data files (keep copyq.conf, ignore the rest)
+.config/copyq/copyq.lock
+.config/copyq/copyq_tabs.ini
+.config/copyq/copyq_tab_*.dat
+.config/copyq/copyq_geometry.ini
+.config/copyq/copyq.pub
+.config/copyq/copyq-monitor.ini
+.config/copyq/copyq-commands.ini
+.config/copyq/copyq-filter.ini
+.config/copyq/copyq_no_session.ini
+.config/copyq/themes/
+
+# btop themes (shipped with the package)
+.config/btop/themes/
+
+# Alacritty backups
+.config/alacritty/*.bak

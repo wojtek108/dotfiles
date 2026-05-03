@@ -1,0 +1,4 @@
+clear
+add ~/Music/
+add ~/Music/pre
+update-cache -f
