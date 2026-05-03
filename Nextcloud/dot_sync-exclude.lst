@@ -1,374 +1,242 @@
-# ========================================
-# NEXTCLOUD SYNC EXCLUSION LIST
-# Complete and comprehensive
-# ========================================
+# ============================================================
+# Nextcloud sync-exclude.lst
+# Place in: ~/.config/Nextcloud/sync-exclude.lst  (Linux)
+#           %APPDATA%\Nextcloud\sync-exclude.lst   (Windows)
+# ============================================================
 
-# ========================================
-# NEXTCLOUD SPECIFIC
-# ========================================
-.sync-exclude.lst
-.nextcloud-sync.log
-.owncloudsync.log
-.csync_journal.db
-.csync_journal.db-shm
-.csync_journal.db-wal
 
-# ========================================
-# VERSION CONTROL SYSTEMS
-# ========================================
-.git/
-.gitignore
-.gitattributes
-.gitmodules
-.svn/
-.hg/
-.bzr/
-CVS/
+# ============================================================
+# SYSTEM & OS FILES
+# ============================================================
 
-# ========================================
-# PYTHON DEVELOPMENT
-# ========================================
-# Virtual environments
-venv/
-env/
-.venv/
-.env/
-virtualenv/
-.Python
+# Linux
+.directory
+.Trash-*
+lost+found
 
-# Python cache and compiled files
-__pycache__/
-*.py[cod]
-*.pyc
-*.pyo
-*.pyd
-*$py.class
-
-# Testing and coverage
-.pytest_cache/
-.tox/
-.coverage
-.coverage.*
-htmlcov/
-.hypothesis/
-.nox/
-.cache
-
-# Distribution and packaging
-dist/
-build/
-*.egg-info/
-.eggs/
-*.egg
-.installed.cfg
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Type checking and linting
-.mypy_cache/
-.ruff_cache/
-.pytype/
-.dmypy.json
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-
-# ========================================
-# JAVASCRIPT / NODE.JS
-# ========================================
-node_modules/
-bower_components/
-jspm_packages/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.npm/
-.yarn/
-.pnp.*
-
-# Build outputs
-dist/
-build/
-out/
-.next/
-.nuxt/
-.cache/
-.parcel-cache/
-.output/
-
-# ========================================
-# JAVA / JVM
-# ========================================
-target/
-.gradle/
-.mvn/
-*.class
-*.jar
-*.war
-*.ear
-.classpath
-.project
-.settings/
-
-# ========================================
-# C / C++
-# ========================================
-*.o
-*.obj
-*.so
-*.a
-*.lib
-*.dll
-*.dylib
-*.exe
-*.out
-*.app
-
-# ========================================
-# .NET / C#
-# ========================================
-bin/
-obj/
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-.vs/
-
-# ========================================
-# GO
-# ========================================
-vendor/
-
-# ========================================
-# RUST
-# ========================================
-target/
-Cargo.lock
-
-# ========================================
-# RUBY
-# ========================================
-.bundle/
-vendor/bundle/
-
-# ========================================
-# PHP
-# ========================================
-vendor/
-composer.lock
-
-# ========================================
-# MOBILE DEVELOPMENT
-# ========================================
-.android/
-.ios/
-.flutter-plugins
-.flutter-plugins-dependencies
-android/.gradle/
-ios/Pods/
-ios/.symlinks/
-
-# ========================================
-# IDE AND EDITOR FILES
-# ========================================
-# JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.)
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# Visual Studio Code
-.vscode/
-*.code-workspace
-
-# Visual Studio
-.vs/
-
-# Eclipse
-.metadata/
-.project
-.classpath
-.settings/
-.loadpath
-
-# Sublime Text
-*.sublime-workspace
-*.sublime-project
-
-# Vim
-*.swp
-*.swo
-*.swn
-*~
-.netrwhist
-
-# Emacs
-*~
-\#*\#
-.\#*
-.dir-locals.el
-
-# Xcode
-*.xcodeproj/
-*.xcworkspace/
-xcuserdata/
-
-# ========================================
-# BUILD AND DEPLOYMENT TOOLS
-# ========================================
-.terraform/
-.vagrant/
-.docker/
-.Docker/
-docker-compose.yml
-Dockerfile
-.circleci/
-.github/
-.gitlab-ci.yml
-.travis.yml
-Jenkinsfile
-
-# ========================================
-# OPERATING SYSTEM FILES
-# ========================================
 # macOS
 .DS_Store
-.AppleDouble
-.LSOverride
-.DocumentRevisions-V100
-.fseventsd/
-.Spotlight-V100/
-.TemporaryItems/
+.DS_Store?
+._*
+.Spotlight-V100
 .Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+.fseventsd
+.AppleDouble
+.AppleDB
+.AppleDesktop
 .apdisk
+Icon\r
 
 # Windows
 Thumbs.db
 Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
-desktop.ini
-*.lnk
+Desktop.ini
 $RECYCLE.BIN/
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
+*.lnk
 
-# Linux
-.directory
-.Trash-*/
-lost+found/
 
-# System volume information
-System Volume Information/
+# ============================================================
+# TEMPORARY & LOCK FILES
+# ============================================================
 
-# ========================================
-# CLOUD STORAGE AND SYNC TOOLS
-# ========================================
-.dropbox/
-.dropbox.cache/
-.icloud/
-.one/
-.onedrive/
-.syncthing/
-.stfolder/
-.stversions/
-.sync/
-
-# ========================================
-# TEMPORARY AND CACHE FILES
-# ========================================
+~ $*
 *.tmp
 *.temp
-*.bak
-*.backup
-*.bk
-*.old
-*.orig
-*.cache
-*.log
-*.pid
-*.seed
-*.out
-*.err
-.cache/
-cache/
-tmp/
-temp/
-
-# Database files
-*.db-shm
-*.db-wal
-
-# ========================================
-# DOWNLOAD AND PARTIAL FILES
-# ========================================
+*.swp
+*.swo
+*.swn
+*~
+.~lock.*
 *.part
 *.crdownload
 *.download
-*.partial
+*.filepart
 
-# ========================================
-# COMPRESSED ARCHIVES
-# ========================================
-*.tar
-*.gz
-*.bz2
-*.xz
-*.zip
-*.rar
-*.7z
-*.iso
-*.dmg
 
-# ========================================
-# MEDIA THUMBNAILS
-# ========================================
-._*
-.picasa.ini
-.picasaoriginals/
+# ============================================================
+# DATABASE LOCK FILES (Firefox, Chromium, SQLite apps)
+# ============================================================
 
-# ========================================
-# SYSTEM DIRECTORIES (DO NOT SYNC)
-# ========================================
-dev/
-proc/
-sys/
-run/
-mnt/
-media/
-.snap/
-.gvfs/
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+*.metadata-v2
+storage-sync-v2*
+places.sqlite-*
+webappsstore.sqlite-*
+cookies.sqlite-*
+favicons.sqlite-*
 
-# ========================================
-# LOCK FILES
-# ========================================
-*.lock
-.lock
-package-lock.json
-yarn.lock
-Gemfile.lock
-poetry.lock
 
-# ========================================
-# ENVIRONMENT AND CONFIG
-# ========================================
-.env
-.envrc
-.env.local
-.env.*.local
+# ============================================================
+# BROWSER PROFILES (locked while browser is running)
+# ============================================================
 
-# ========================================
-# LOGS
-# ========================================
-logs/
+# Firefox — lock files and session data
+.parentlock
+lock
+*.lz4
+sessionstore*
+recovery.js
+recovery.bak
+previous.js
+upgrade.js-*
+
+# Chromium / Chrome
+Cookies-journal
+History-journal
+Network Action Predictor-journal
+Visited Links
+
+
+# ============================================================
+# VERSION CONTROL
+# ============================================================
+
+.git/
+.svn/
+.hg/
+.bzr/
+CVS/
+*.orig
+
+
+# ============================================================
+# PYTHON
+# ============================================================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env/
+.tox/
+.pytest_cache/
+*.coverage
+.mypy_cache/
+.ruff_cache/
+
+
+# ============================================================
+# NODE / JAVASCRIPT
+# ============================================================
+
+node_modules/
+.npm/
+.yarn/
+.pnp.*
+.cache/
+dist/
+.next/
+.nuxt/
+.svelte-kit/
+
+
+# ============================================================
+# JAVA / MAVEN / GRADLE
+# ============================================================
+
+target/
+*.class
+*.jar
+*.war
+*.ear
+.gradle/
+build/
+
+
+# ============================================================
+# IDEs & EDITORS
+# ============================================================
+
+# JetBrains (IntelliJ, PyCharm, etc.)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VSCode
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Sublime Text
+*.sublime-workspace
+
+# Vim / Emacs
+*.un~
+\#*\#
+.\#*
+
+
+# ============================================================
+# LOGS & DEBUG OUTPUT
+# ============================================================
+
 *.log
 *.log.*
+*.logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# ============================================================
+# COMPILED & GENERATED BINARIES
+# ============================================================
+
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.a
+*.lib
+*.pyc
+
+
+# ============================================================
+# ARCHIVES (optional — comment out if you want these synced)
+# ============================================================
+
+# *.zip
+# *.tar
+# *.tar.gz
+# *.tgz
+# *.rar
+# *.7z
+
+
+# ============================================================
+# THUMBNAILS & CACHE DIRS
+# ============================================================
+
+.thumbnails/
+.cache/
+Thumbs/
+
+
+# ============================================================
+# NEXTCLOUD OWN ARTIFACTS
+# ============================================================
+
+._conflict-*
+*_conflict-*
+
+# Firefox profile directory
+config/mozilla/firefox/
