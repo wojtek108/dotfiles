@@ -9,6 +9,7 @@ vim.g.maplocalleader = " "
 vim.opt.compatible = false
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
+vim.g.loaded_matchparen = 1
 vim.opt.autoindent = true
 vim.opt.cindent = true   -- Smarter C-aware indentation (replaces smartindent)
 vim.opt.wrap = false

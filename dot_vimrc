@@ -15,11 +15,13 @@ set undofile " Enable persistent undo (undo history persists across sessions)
 set undodir=~/.vim/undodir " Uncomment and create this directory if you want to specify undo file location
 set laststatus=2
 set statusline=buf\ %n:\ %F\ %m%r\ %=%l,%c\ \ \ \ \ \ \ \ %p%%
+set noshowmatch
 "set statusline= laststatus=1
 "=============================================================================
 " UI & Appearance
 "=============================================================================
-
+" Disable the bracket match highlighting plugin
+let g:loaded_matchparen = 1
 syntax on " Enable syntax highlighting
 
 set number " Show absolute line numbers
