@@ -1,129 +1,105 @@
 "=============================================================================
 " General Vim Behavior & Settings
 "=============================================================================
-
-set nocompatible " Be iMproved, not compatible with old Vi
-set encoding=utf-8 " Set Vim's internal encoding to UTF-8
-set fileencoding=utf-8 " Set default file encoding for new files to UTF-8
-set autoindent " Automatically indent new lines
-set cindent " Smarter C-aware indentation (replaces smartindent for C files)
-set nowrap " Don't wrap lines; scroll horizontally instead
-set hidden " Allow unsaved buffers to be hidden (useful for switching files)
-set showcmd " Show incomplete commands in the status line
-set updatetime=300 " Time in ms for 'CursorHold' events (important for some plugins, like linters)
-set undofile " Enable persistent undo (undo history persists across sessions)
-set undodir=~/.vim/undodir " Uncomment and create this directory if you want to specify undo file location
+set nocompatible              " Be iMproved
+set encoding=utf-8
+set fileencoding=utf-8
+set autoindent
+set cindent                   " Smarter C-aware indentation
+set nowrap                    " Don't wrap lines
+set hidden                    " Allow unsaved buffers to be hidden
+set showcmd                   " Show incomplete commands
+set updatetime=300            " Faster response for diagnostics
+set undofile                  " Persistent undo
+set undodir=~/.vim/undodir    " Ensure this dir exists: mkdir -p ~/.vim/undodir
 set laststatus=2
 set statusline=buf\ %n:\ %F\ %m%r\ %=%l,%c\ \ \ \ \ \ \ \ %p%%
 set noshowmatch
-"set statusline= laststatus=1
+
 "=============================================================================
 " UI & Appearance
 "=============================================================================
-" Disable the bracket match highlighting plugin
-let g:loaded_matchparen = 1
-syntax on " Enable syntax highlighting
+let g:loaded_matchparen = 1   " Disable bracket match highlighting
+syntax on
+set number                    " Show absolute line numbers
+set relativenumber            " Show relative line numbers for navigation
+set mouse=a                   " Enable mouse support
+set mousehide
+set splitright
+set splitbelow
 
-set number " Show absolute line numbers
-set relativenumber " Show relative line numbers for navigation (e.g., '3j' to move 3 lines down)
-set mouse=a " Enable mouse support in all modes (terminal)
-set mousehide " Hide mouse cursor when typing
-set splitright " New vertical splits appear to the right
-set splitbelow " New horizontal splits appear below
-" Enable True Color support
 if (has("termguicolors"))
   set termguicolors
 endif
-
-" Set a classic, high-visibility colorscheme
 colorscheme slate
 
-
 "=============================================================================
-" Indentation & Tabs
+" Indentation & Search
 "=============================================================================
+set tabstop=4
+set softtabstop=4
+set expandtab                 " Use spaces instead of tabs
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
 
-set tabstop=4 " Number of spaces a <Tab> counts for
-set softtabstop=4 " Number of spaces a <Tab> counts for when editing (backspace too)
-set expandtab " Use spaces instead of tabs for indentation
-
-" C formatting (K&R style)
-set cinoptions=
-set formatoptions=croqnj
-
-"=============================================================================
-" Search Options
-"=============================================================================
-
-set incsearch " Highlight matches as you type
-set hlsearch " Highlight all matches
-set ignorecase " Ignore case in searches
-set smartcase " Case-sensitive if pattern contains uppercase, otherwise ignore case
-
-" Quickly turn off search highlight (press <leader>n)
+" Quickly turn off search highlight (press ,n)
+let mapleader=","
 nnoremap <leader>n :nohlsearch<CR>
 
 "=============================================================================
-" File Type & Navigation
+" General Mappings & Clipboard
 "=============================================================================
-
-filetype plugin indent on " Enable filetype detection, plugins, and intelligent indenting
-set tags=./tags,./.git/tags,tags,.git/tags " Common tag files locations for ctags/Universal Ctags
-set wildmenu " Enhanced command-line completion menu
-set wildignore+=*.o,*.pyc,*.pdf,*.mod,*.so,*.h.gch,*.bak,*.swp,*.tmp,*.log " Ignore common temporary/generated files in completion
-
-"=============================================================================
-" Mappings
-"=============================================================================
-
-let mapleader="," " Set leader key to comma (,)
-
-" Easier navigation for wrapped lines (if 'nowrap' is off or for long lines)
+set clipboard=unnamedplus     " Use system clipboard
 nnoremap j gj
 nnoremap k gk
 
-" Use system clipboard as default for yank and paste
-set clipboard=unnamedplus
-
-" Execute Python script from Vim (after clearing console)
-augroup python_mappings
-  autocmd!
-  autocmd FileType python nnoremap <buffer> <leader>r :w<CR>:!clear && python3 %<CR>
-augroup END
-
 "=============================================================================
-" External Formatter: clang-format (C/C++ only, graceful if missing)
+" C/C++ Specific Configuration
 "=============================================================================
+" C formatting (K&R style)
+set cinoptions=
+set formatoptions=croqnj
 
 if executable('clang-format')
     augroup c_format
         autocmd!
         autocmd FileType c,cpp setlocal formatprg=clang-format
+        " Shortcuts to format manually
         autocmd FileType c,cpp nnoremap <buffer> <leader>f :%!clang-format<CR>
         autocmd FileType c,cpp vnoremap <buffer> <leader>f :!clang-format<CR>
-        autocmd FileType c,cpp nnoremap <buffer> <leader>a @a:%!clang-format<CR>
-        " Auto-format C/C++ files on open, new file, and before save
+        
+        " Auto-format on Open and Save
         autocmd BufReadPost *.c,*.cpp,*.h,*.hpp if !(line('$') == 1 && getline(1) == '') | silent %!clang-format | endif
-        autocmd BufNewFile *.c,*.cpp,*.h,*.hpp if !(line('$') == 1 && getline(1) == '') | silent %!clang-format | endif
         autocmd BufWritePre *.c,*.cpp,*.h,*.hpp silent %!clang-format
     augroup END
 endif
 
 "=============================================================================
-" Plugin Manager (e.g., vim-plug) - Add your plugins here later
+" Python Specific Configuration
 "=============================================================================
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
-" If you install a plugin manager like vim-plug, you'd add lines here.
-" Example for vim-plug:
-" call plug#begin('~/.vim/plugged')
-"
-" Plug 'dense-analysis/ale' " Asynchronous Linting/Fixing
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} " LSP client (requires Node.js)
-" Plug 'rust-lang/rust.vim' " Rust language support
-" Plug 'fatih/vim-go' " Go language support
-" Plug 'davidhalter/jedi-vim' " Python completion
-"
-" call plug#end()
-"
-" Remember to run :PlugInstall (or your plugin manager's equivalent) in Vim
-" after adding plugins and saving your .vimrc.
+augroup python_env
+    autocmd!
+    " Indentation & Logic
+    autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+    autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    
+    " Visual Aids (PEP8 80-char line and code folding)
+    autocmd FileType python setlocal colorcolumn=80
+    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python setlocal foldlevel=99
+    
+    " Execute Python script from Vim (after clearing console)
+    autocmd FileType python nnoremap <buffer> <leader>r :w<CR>:!clear && python3 %<CR>
+augroup END
+
+"=============================================================================
+" File Type & Navigation
+"=============================================================================
+filetype plugin indent on
+set wildmenu
+set wildignore+=*.o,*.pyc,*.pdf,*.so,*.bak,*.swp,*.tmp,*.log
+set tags=./tags,./.git/tags,tags,.git/tags
