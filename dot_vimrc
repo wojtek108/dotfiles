@@ -1,105 +1,116 @@
 "=============================================================================
 " General Vim Behavior & Settings
 "=============================================================================
-set nocompatible              " Be iMproved
-set encoding=utf-8
-set fileencoding=utf-8
-set autoindent
-set cindent                   " Smarter C-aware indentation
-set nowrap                    " Don't wrap lines
-set hidden                    " Allow unsaved buffers to be hidden
-set showcmd                   " Show incomplete commands
-set updatetime=300            " Faster response for diagnostics
-set undofile                  " Persistent undo
-set undodir=~/.vim/undodir    " Ensure this dir exists: mkdir -p ~/.vim/undodir
-set laststatus=2
-set statusline=buf\ %n:\ %F\ %m%r\ %=%l,%c\ \ \ \ \ \ \ \ %p%%
-set noshowmatch
+set nocompatible              " Disable compatibility with old vi to enable full Vim features
+set encoding=utf-8            " Standardize internal encoding
+set fileencoding=utf-8        " Standardize file save encoding
+set autoindent                " Copy indent from current line when starting a new line
+set cindent                   " Enable stricter, C-program style auto-indenting
+set nowrap                    " Do not visually wrap long lines to the next line
+set hidden                    " Allow switching buffers without saving the current one first
+set showcmd                   " Show partial command keystrokes in the bottom right
+set updatetime=300            " Reduce time (in ms) Vim waits before triggering plugin events (good for diagnostics)
+set undofile                  " Save undo history to a file so it persists after closing Vim
+set undodir=~/.vim/undodir    " Directory to store undo files (ensure you run: mkdir -p ~/.vim/undodir)
+set laststatus=2              " Always display the status line at the bottom
+set statusline=buf\ %n:\ %F\ %m%r\ %=%l,%c\ \ \ \ \ \ \ \ %p%% " Custom format for the status line
+set noshowmatch               " Disable jumping to the matching bracket briefly when typed
 
 "=============================================================================
 " UI & Appearance
 "=============================================================================
-let g:loaded_matchparen = 1   " Disable bracket match highlighting
-syntax on
-set number                    " Show absolute line numbers
-set relativenumber            " Show relative line numbers for navigation
-set mouse=a                   " Enable mouse support
-set mousehide
-set splitright
-set splitbelow
+let g:loaded_matchparen = 1   " Completely disable the matchparen plugin for performance/preference
+syntax on                     " Enable syntax highlighting
+set number                    " Show absolute line numbers on the left
+set relativenumber            " Show relative line numbers for faster vertical navigation (e.g., 5j, 3k)
+set mouse=a                   " Enable full mouse support in all modes
+set mousehide                 " Hide the mouse cursor while typing
+set splitright                " When opening a vertical split, place it to the right
+set splitbelow                " When opening a horizontal split, place it below the current window
 
 if (has("termguicolors"))
-  set termguicolors
+  set termguicolors           " Enable 24-bit RGB color in the terminal if supported
 endif
-colorscheme slate
+colorscheme slate             " Use the built-in 'slate' color scheme
 
 "=============================================================================
 " Indentation & Search
 "=============================================================================
-set tabstop=4
-set softtabstop=4
-set expandtab                 " Use spaces instead of tabs
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
+set tabstop=4                 " Number of visual spaces a <Tab> counts for
+set softtabstop=4             " Number of spaces a <Tab> counts for while editing
+set expandtab                 " Convert typed <Tab> characters into spaces
+set incsearch                 " Highlight search matches dynamically as you type
+set hlsearch                  " Keep search matches highlighted after pressing enter
+set ignorecase                " Ignore case when searching
+set smartcase                 " Override ignorecase if the search pattern contains uppercase characters
 
-" Quickly turn off search highlight (press ,n)
+" Quickly turn off search highlight by pressing ',n'
 let mapleader=","
 nnoremap <leader>n :nohlsearch<CR>
 
 "=============================================================================
 " General Mappings & Clipboard
 "=============================================================================
-set clipboard=unnamedplus     " Use system clipboard
+set clipboard=unnamedplus     " Sync Vim's clipboard with the system clipboard
+
+" Allow navigating visually wrapped lines as if they were real lines
 nnoremap j gj
 nnoremap k gk
 
 "=============================================================================
 " C/C++ Specific Configuration
 "=============================================================================
-" C formatting (K&R style)
-set cinoptions=
-set formatoptions=croqnj
+" C formatting style settings
+set cinoptions=               " Default C indentation options
+set formatoptions=croqnj      " Control auto-formatting of comments and text
 
 if executable('clang-format')
     augroup c_format
         autocmd!
+        " Set clang-format as the default formatter for C/C++
         autocmd FileType c,cpp setlocal formatprg=clang-format
-        " Shortcuts to format manually
+        
+        " Shortcuts to format manually using ',f'
         autocmd FileType c,cpp nnoremap <buffer> <leader>f :%!clang-format<CR>
         autocmd FileType c,cpp vnoremap <buffer> <leader>f :!clang-format<CR>
         
         " Auto-format on Open and Save
-        autocmd BufReadPost *.c,*.cpp,*.h,*.hpp if !(line('$') == 1 && getline(1) == '') | silent %!clang-format | endif
+        " The execute command safely isolates the shell execution from Vimscript's | endif
+        autocmd BufReadPost *.c,*.cpp,*.h,*.hpp if !(line('$') == 1 && getline(1) == '') | silent execute "%!clang-format" | endif
         autocmd BufWritePre *.c,*.cpp,*.h,*.hpp silent %!clang-format
     augroup END
 endif
 
+" Simple gcc command to facilitate compilation:
+" gcc -o my_program file.c -Wall -Wextra
+
 "=============================================================================
 " Python Specific Configuration
 "=============================================================================
+" Visually mark column 80 to help adhere to PEP8 line length guidelines
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 augroup python_env
     autocmd!
-    " Indentation & Logic
+    " Indentation & Logic specific to Python
     autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
     autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     
-    " Visual Aids (PEP8 80-char line and code folding)
+    " Visual Aids (PEP8 80-character line limit and code folding rules)
     autocmd FileType python setlocal colorcolumn=80
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldlevel=99
     
-    " Execute Python script from Vim (after clearing console)
+    " Execute the current Python script directly from Vim using ',r'
     autocmd FileType python nnoremap <buffer> <leader>r :w<CR>:!clear && python3 %<CR>
 augroup END
 
 "=============================================================================
 " File Type & Navigation
 "=============================================================================
-filetype plugin indent on
-set wildmenu
+filetype plugin indent on     " Enable filetype detection and load specific indent/plugin files
+set wildmenu                  " Enable enhanced command-line completion menu
+" Ignore specific file types and compiled binaries when auto-completing
 set wildignore+=*.o,*.pyc,*.pdf,*.so,*.bak,*.swp,*.tmp,*.log
+" Define where Vim should look for ctags files to enable code navigation
 set tags=./tags,./.git/tags,tags,.git/tags
