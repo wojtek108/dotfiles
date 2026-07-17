@@ -204,4 +204,8 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH="/home/wga/.fabric/bin:$PATH"
 
 # you.com api key
-export YDC_API_KEY="ydc-sk-7392b702c1b3c8f2-i1ovArfrn9BDy6u2chiauBRQHnlPLvFN-9873ff53"
+# cloudflare workers api token
+[ -f ~/.secrets/env ] && source ~/.secrets/env
+
+# mimocode
+export PATH=/home/wga/.mimocode/bin:$PATH
