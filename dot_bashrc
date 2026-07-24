@@ -209,3 +209,8 @@ export PATH="/home/wga/.fabric/bin:$PATH"
 
 # mimocode
 export PATH=/home/wga/.mimocode/bin:$PATH
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+[[ -r "$HOME/.grok/completions/bash/grok.bash" ]] && source "$HOME/.grok/completions/bash/grok.bash"
+
